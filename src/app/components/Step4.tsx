@@ -15,8 +15,12 @@ export const Step4: React.FC<{
       </div>
       <DdInput
         placeholder="Caleb"
-        onChange={() => {
-          userContext.setUserObject((user) => ({ ...user, name: "Caleb" }));
+        value={userContext.userObject.name}
+        onChange={(e) => {
+          userContext.setUserObject((user) => ({
+            ...user,
+            name: e.target.value,
+          }));
         }}
       />
       {userContext.userObject.name && (
