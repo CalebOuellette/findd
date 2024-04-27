@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { animated, useSpring } from "@react-spring/web";
+import React from "react";
 
-export const DD = () => {
+export const DD = ({ tiny = false }: { tiny?: boolean }) => {
   return (
     <div>
       <svg
-        width="91"
-        height="91"
+        width={tiny ? "30" : "91"}
+        height={tiny ? "30" : "91"}
         viewBox="0 0 91 91"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

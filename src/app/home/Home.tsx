@@ -17,7 +17,6 @@ export const Home = () => {
 
   useEffect(() => {
     const effect = async () => {
-      console.log(userContext.userObject);
       const res = await fetch("/api/connections", {
         method: "POST",
         headers: {

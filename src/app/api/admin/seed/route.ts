@@ -11,7 +11,7 @@ export async function GET(request: Request) {
   );
 
   await buildUser({
-    name: "caleb",
+    name: "jake",
     description: "i like to go into nature and ride my bicycle.",
   });
 

@@ -3,6 +3,7 @@ import { useCompletion } from "ai/react";
 import { useUser } from "@/contexts/UserContext";
 import { DD } from "@/components/dd";
 import { UserCard, User } from "./Home";
+import { DdInput } from "@/components/input";
 
 export const Chat = ({ connectionUser }: { connectionUser: User }) => {
   const userContext = useUser();
@@ -33,7 +34,7 @@ export const Chat = ({ connectionUser }: { connectionUser: User }) => {
           <form
             onSubmit={(e) => {
               handleSubmit(e);
-              //setIntro(false);
+              setIntro(false);
             }}
             className="w-full"
           >
@@ -47,7 +48,15 @@ export const Chat = ({ connectionUser }: { connectionUser: User }) => {
           </form>
         </>
       )}
-      {completion}
+      {!intro && (
+        <div className="flex flex-col">
+          <div className="flex gap-2 flex-1">
+            <DD tiny />
+            <div className="w-full flex-1">{completion}</div>
+          </div>
+          <DdInput />
+        </div>
+      )}
     </div>
   );
 };

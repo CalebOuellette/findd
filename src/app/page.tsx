@@ -6,7 +6,7 @@ export default function Home() {
   console.log("Home");
   return (
     <UserProvider>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <main className="h-screen flex w-screen justify-center p-24">
         <Main />
       </main>
     </UserProvider>

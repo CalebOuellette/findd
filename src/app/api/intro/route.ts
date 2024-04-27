@@ -15,7 +15,6 @@ export async function POST(req: Request) {
   if (!user || !connectionUser) {
     throw new Error("User not found");
   }
-  console.log(user, connectionUser);
 
   // Request the OpenAI API for the response based on the prompt
   const response = await openai.chat.completions.create({
