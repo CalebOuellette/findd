@@ -49,8 +49,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
       },
       body: JSON.stringify(userObject),
     });
-    const data = (await res.json()) as CreatedUser;
-    setUserObject({ ...data, state: "created" });
+    const data = (await res.json()) as { user: CreatedUser };
+    setUserObject({ ...data.user, state: "created" });
   };
 
   useEffect(() => {

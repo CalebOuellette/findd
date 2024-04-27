@@ -1,6 +1,4 @@
-import { openai } from "@/app/lib/openai";
 import { edgeDbClient } from "@/app/lib/edgedb";
-import e from "@/../dbschema/edgeql-js";
 import { loadUserById } from "@/app/controllers/user";
 
 export const dynamic = "force-dynamic";
