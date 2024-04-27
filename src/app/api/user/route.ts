@@ -3,36 +3,41 @@ import { edgeDbClient } from "@/app/lib/edgedb";
 import e from "@/../dbschema/edgeql-js";
 
 export const dynamic = "force-dynamic";
-export async function GET() {
+export async function POST(request: Request) {
   // embed the text of the user.
 
-  const description = "Hello, world!";
+  const { description, name } = await request.json();
 
   const embeddingResult = await openai.embeddings.create({
     model: "text-embedding-3-large",
     input: description,
   });
 
-  await edgeDbClient.execute(
-    `
-    insert User {
+  const result = await edgeDbClient.query<{ id: string }>(
+    `select(insert User {
       name := <str>$name,
       description := <str>$description,
-      descriptionEmbedding := <array<float64>>$descriptionEmbedding,
-    }
+      descriptionEmbedding := <array<float32>>$descriptionEmbedding,
+    })
   `,
     {
-      name: "Caleb",
+      name: name,
       description: description,
-      descriptionEmbedding: new Float64Array(embeddingResult.data[0].embedding),
+      descriptionEmbedding: new Float32Array(embeddingResult.data[0].embedding),
     }
   );
 
-  //  console.log(result.id);
+  const user = e.select(e.User, () => ({
+    id: true,
+    name: true,
+    description: true,
+    filter_single: { id: result[0].id },
+  }));
+
+  const userResult = await user.run(edgeDbClient);
 
   return Response.json({
-    message: "Hello, world!",
-    length: embeddingResult.data[0].embedding.length,
+    user: userResult,
   });
 }
 

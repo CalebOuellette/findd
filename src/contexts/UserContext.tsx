@@ -1,10 +1,9 @@
 import React, { createContext, ReactNode, useEffect } from "react";
-import { nanoid } from "nanoid";
 
 type UserObject = {
   name?: string;
   description?: string;
-  id: string;
+  id?: string;
   state: "new" | "created";
   step: number;
 };
@@ -40,7 +39,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
   const [userObject, setUserObject] = React.useState<User>(
     existingUser() || {
       state: "new",
-      id: nanoid(),
       step: 0,
     }
   );
