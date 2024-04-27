@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
-import { DD } from "@/components/dd";
+import React, { useEffect, useState } from "react";
+import { StepBase } from "./StepBase";
 
 export const TextStepBase: React.FC<{
-  nextStepReady: boolean;
-  setNextStepReady: (state: boolean) => void;
   goNext: () => void;
   text: string;
   duration: number;
-}> = ({ text, duration, nextStepReady, setNextStepReady, goNext }) => {
+}> = ({ text, duration, goNext }) => {
+  const [nextStepReady, setNextStepReady] = useState(false);
   useEffect(() => {
     const timeout = setTimeout(() => {
       setNextStepReady(true);
@@ -16,10 +15,13 @@ export const TextStepBase: React.FC<{
   }, [setNextStepReady, duration]);
 
   return (
-    <div className="flex flex-col items-center gap-10" onClick={goNext}>
-      <DD />
-      <div className="whitespace-pre text-center">{text}</div>
-      {nextStepReady && <div> Tap to continue</div>}
+    <div onClick={() => nextStepReady && goNext()}>
+      <StepBase>
+        <div className="whitespace-pre-wrap text-center text-xl text-neutral-700">
+          {text}
+        </div>
+        {nextStepReady && <div> Tap to continue</div>}
+      </StepBase>
     </div>
   );
 };

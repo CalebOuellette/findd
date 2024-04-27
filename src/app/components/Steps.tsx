@@ -3,34 +3,23 @@ import React, { useMemo } from "react";
 import { Step1 } from "./Step1";
 import { Step2 } from "./Step2";
 import { Step3 } from "./Step3";
+import { Step4 } from "./Step4";
+import { Step5 } from "./Step5";
+
+const allSteps = [Step1, Step2, Step3, Step4, Step5];
 
 export const Steps = () => {
-  const [step, setStep] = React.useState(0);
-  const [nextStepReady, setNextStepReady] = React.useState(false);
+  const [step, setStep] = React.useState(3);
 
   return (
-    <div>
-      {step === 0 && (
-        <Step1
-          nextStepReady={nextStepReady}
-          setNextStepReady={setNextStepReady}
-          goNext={() => setStep(step + 1)}
-        />
-      )}
-      {step === 1 && (
-        <Step2
-          nextStepReady={nextStepReady}
-          setNextStepReady={setNextStepReady}
-          goNext={() => setStep(step + 1)}
-        />
-      )}
-      {step === 2 && (
-        <Step3
-          nextStepReady={nextStepReady}
-          setNextStepReady={setNextStepReady}
-          goNext={() => setStep(step + 1)}
-        />
-      )}
+    <div className="max-w-64">
+      {allSteps.map((Step, index) => {
+        return (
+          index === step && (
+            <Step key={index} goNext={() => setStep(step + 1)} />
+          )
+        );
+      })}
     </div>
   );
 };
