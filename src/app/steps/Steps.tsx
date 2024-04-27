@@ -15,7 +15,7 @@ export const Steps = () => {
   const step = userContext.userObject.step;
 
   return (
-    <div className="max-w-64">
+    <div className="">
       {allSteps.map((Step, index) => {
         return (
           index === step && (

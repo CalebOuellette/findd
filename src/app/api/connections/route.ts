@@ -14,9 +14,15 @@ export async function POST(req: Request) {
   }
 
   // <array<float32>>$descriptionEmbedding
-  const result = await edgeDbClient.query<{ id: string }>(
+  const result = await edgeDbClient.query<{
+    id: string;
+    name: string;
+    description: string;
+    descriptionEmbedding: Float32Array;
+  }>(
     `select User {id, name, description, descriptionEmbedding}
-    order by ext::pgvector::cosine_distance(User.descriptionEmbedding, <openAIEmbedding>$inputEmbedding) limit 10
+
+    order by ext::pgvector::cosine_distance(User.descriptionEmbedding, <openAIEmbedding>$inputEmbedding) limit 4
     `,
     {
       inputEmbedding: user.descriptionEmbedding,
@@ -25,19 +31,19 @@ export async function POST(req: Request) {
 
   const users = await Promise.all(
     result.map(async (resultingUser) => {
-      const fullUser = await loadUserById(resultingUser.id);
       return {
         distance: cosine_distance(
-          Array.from(fullUser!.descriptionEmbedding),
+          Array.from(resultingUser!.descriptionEmbedding),
           Array.from(user.descriptionEmbedding)
         ),
-        name: fullUser!.name,
-        description: fullUser!.description,
+        name: resultingUser!.name,
+        description: resultingUser!.description,
+        id: resultingUser!.id,
       };
     })
   );
 
-  return Response.json({ users: users });
+  return Response.json({ users: users.filter((u) => u.id !== user.id) });
 }
 
 const cosine_distance = (a: number[], b: number[]) => {

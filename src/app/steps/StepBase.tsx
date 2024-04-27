@@ -5,7 +5,7 @@ export const StepBase: React.FC<{
   children: ReactNode;
 }> = ({ children }) => {
   return (
-    <div className="flex flex-col items-center gap-10">
+    <div className="flex flex-col items-center gap-10 w-64">
       <DD />
       {children}
     </div>

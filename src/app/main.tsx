@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Steps } from "./steps/Steps";
 import { Home } from "./home/Home";
@@ -7,9 +8,9 @@ export const Main = () => {
   const userContext = useUser();
 
   return (
-    <div>
+    <>
       {userContext.userObject.state === "new" && <Steps />}
       {userContext.userObject.state === "created" && <Home />}
-    </div>
+    </>
   );
 };

@@ -28,6 +28,7 @@ const UserContext = createContext({
 });
 
 const existingUser = () =>
+  localStorage &&
   localStorage.getItem("user") &&
   (JSON.parse(localStorage.getItem("user") as string) as UserObject);
 
