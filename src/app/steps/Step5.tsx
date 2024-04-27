@@ -11,7 +11,9 @@ export const Step5: React.FC<{
   return (
     <StepBase {...props}>
       <div className="whitespace-pre-wrap text-center text-xl text-neutral-700">
-        Any tell us a little bit about you?
+        {`Now the hard part... tell me a bit about you? 
+        
+Try to go into detail about what you like, what you do, and what you are looking for.`}
       </div>
       <DdTextArea
         placeholder="I am..."

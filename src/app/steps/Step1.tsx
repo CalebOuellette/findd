@@ -7,12 +7,12 @@ export const Step1: React.FC<{
   return (
     <TextStepBase
       {...props}
-      text={`Hello
+      text={`Hello,
 
 Would you like to meet someone? 
 
 Someone just like you?`}
-      duration={2000}
+      duration={1000}
     />
   );
 };

@@ -3,7 +3,7 @@ import { useUser } from "@/contexts/UserContext";
 import { Chat } from "./Chat";
 import { StepBase } from "@/app/steps/StepBase";
 
-type User = {
+export type User = {
   distance: number;
   name: string;
   description: string;
@@ -12,9 +12,7 @@ type User = {
 
 export const Home = () => {
   const userContext = useUser();
-  const [selectedChatId, setSelectedChatId] = React.useState<string | null>(
-    null
-  );
+  const [selectedChat, setSelectedChat] = React.useState<User | null>(null);
   const [connections, setConnections] = React.useState<User[]>([]);
 
   useEffect(() => {
@@ -36,30 +34,46 @@ export const Home = () => {
     effect();
   }, []);
 
-  if (selectedChatId) {
-    return <Chat connectionUserId={selectedChatId} />;
+  if (selectedChat) {
+    return <Chat connectionUser={selectedChat} />;
   }
 
   return (
     <StepBase>
+      <div>We found three matches!</div>
       <div className="w-full flex flex-col gap-3">
         {connections.map((connection) => (
-          <div
-            className="w-full flex justify-between items-center cursor-pointer bg-neutral-100 p-3 rounded-[11px]"
-            onClick={() => setSelectedChatId(connection.id)}
+          <UserCard
+            user={connection}
             key={connection.id}
-          >
-            <div>
-              <div className="text-2xl capitalize">{connection.name}</div>
-              <div className="text-xs">
-                {Math.round(connection.distance * 100)}% match
-              </div>
-            </div>
-            <MessageIcon />
-          </div>
+            onClick={() => setSelectedChat(connection)}
+          />
         ))}
       </div>
     </StepBase>
+  );
+};
+
+export const UserCard = ({
+  onClick,
+  user,
+  hideIcon = false,
+}: {
+  user: User;
+  onClick?: () => void;
+  hideIcon?: boolean;
+}) => {
+  return (
+    <div
+      className="w-full flex justify-between items-center cursor-pointer bg-neutral-100 p-3 rounded-[11px]"
+      onClick={onClick}
+    >
+      <div>
+        <div className="text-2xl capitalize">{user.name}</div>
+        <div className="text-xs">{Math.round(user.distance * 100)}% match</div>
+      </div>
+      {!hideIcon && <MessageIcon />}
+    </div>
   );
 };
 

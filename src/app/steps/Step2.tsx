@@ -13,7 +13,7 @@ My name is dd.
       
 I help connect people.
       `}
-      duration={2000}
+      duration={1000}
     />
   );
 };

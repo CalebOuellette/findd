@@ -7,13 +7,13 @@ export const Step3: React.FC<{
   return (
     <TextStepBase
       {...props}
-      text={`But before i get start...
+      text={`But before I get start...
 
-I need to know some things about you!
+I need to understand you!
 
 Let’s start with something easy.
       `}
-      duration={2000}
+      duration={1000}
     />
   );
 };
