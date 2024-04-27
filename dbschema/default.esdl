@@ -1,8 +1,5 @@
 using extension pgvector;
 
-
-
-
 module default {
     scalar type openAIEmbedding extending ext::pgvector::vector<3072>;
     
