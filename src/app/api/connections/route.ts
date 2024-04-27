@@ -39,7 +39,7 @@ export async function POST(req: Request) {
     })
   );
 
-  return Response.json({ result: users });
+  return Response.json({ users: users });
 }
 
 const cosine_distance = (a: number[], b: number[]) => {

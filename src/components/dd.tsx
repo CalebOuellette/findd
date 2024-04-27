@@ -1,7 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { animated, useSpring } from "@react-spring/web";
 
 export const DD = () => {
+  const [animationState, setAnimationState] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setAnimationState((prev) => (prev + 1) % 3);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+  console.log("animationState", animationState);
+
   return (
     <div>
       <svg
@@ -11,7 +21,7 @@ export const DD = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <animated.circle
+        <circle
           cx="45.098"
           cy="45.098"
           r="45"

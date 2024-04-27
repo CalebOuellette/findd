@@ -24,9 +24,7 @@ const UserContext = createContext({
   setUserObject: ((userObject: User) => {}) as React.Dispatch<
     React.SetStateAction<User>
   >,
-  createUser: (async () => {}) as unknown as (
-    user: UserObject
-  ) => Promise<CreatedUser>,
+  createUser: async () => {},
 });
 
 const existingUser = () =>
@@ -43,12 +41,16 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({
     }
   );
 
-  const createUser = async (user: UserObject): Promise<CreatedUser> => {
-    // todo validate user info.
-    const res = await fetch("/api/hello");
+  const createUser = async () => {
+    const res = await fetch("/api/user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userObject),
+    });
     const data = (await res.json()) as CreatedUser;
-    setUserObject(data);
-    return data;
+    setUserObject({ ...data, state: "created" });
   };
 
   useEffect(() => {
