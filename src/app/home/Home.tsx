@@ -34,7 +34,9 @@ export const Home = () => {
   }, []);
 
   if (selectedChat) {
-    return <Chat connectionUser={selectedChat} />;
+    return (
+      <Chat connectionUser={selectedChat} back={() => setSelectedChat(null)} />
+    );
   }
 
   return (

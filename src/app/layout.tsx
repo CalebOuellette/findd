@@ -3,7 +3,7 @@ import { Merriweather } from "next/font/google";
 import "./globals.css";
 
 const inter = Merriweather({
-  weight: ["400"],
+  weight: ["300", "400"],
   style: "normal",
   subsets: ["latin"],
 });
