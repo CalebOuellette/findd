@@ -42,7 +42,7 @@ export const Home = () => {
 
   return (
     <StepBase>
-      <div>We found three matches!</div>
+      <div>We found {connections.length} matches!</div>
       <div className="w-full flex flex-col gap-3">
         {connections.map((connection) => (
           <UserCard

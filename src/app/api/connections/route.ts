@@ -22,7 +22,7 @@ export async function POST(req: Request) {
   }>(
     `select User {id, name, description, descriptionEmbedding}
 
-    order by ext::pgvector::cosine_distance(User.descriptionEmbedding, <openAIEmbedding>$inputEmbedding) limit 4
+    order by ext::pgvector::cosine_distance(User.descriptionEmbedding, <openAIEmbedding>$inputEmbedding) limit 10
     `,
     {
       inputEmbedding: user.descriptionEmbedding,
