@@ -35,5 +35,40 @@ export async function GET(request: Request) {
     description: "i like to learn machine learning",
   });
 
+  await buildUser({
+    name: "josh",
+    description: "I recently got into sewing and I'm loving it!",
+  });
+
+  await buildUser({
+    name: "elise",
+    description: "i love exploring new cuisines and cooking techniques.",
+  });
+
+  await buildUser({
+    name: "mike",
+    description: "i enjoy building custom mechanical keyboards.",
+  });
+
+  await buildUser({
+    name: "sara",
+    description: "i am passionate about digital photography and photo editing.",
+  });
+
+  await buildUser({
+    name: "leo",
+    description: "i like to write poetry in my free time.",
+  });
+
+  await buildUser({
+    name: "kim",
+    description: "i recently started learning to play the guitar.",
+  });
+
+  await buildUser({
+    name: "alex",
+    description: "i am fascinated by astronomy and star gazing.",
+  });
+
   return Response.json({ message: "seeded users!" });
 }
