@@ -6,7 +6,7 @@ export const Step6: React.FC<{
   goNext: () => void;
 }> = (props) => {
   const userContext = useUser();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const create = async () => {
     setLoading(true);

@@ -2,6 +2,7 @@ import React from "react";
 import { StepBase } from "./StepBase";
 import { DdTextArea } from "@/components/input";
 import { useUser } from "@/contexts/UserContext";
+import styles from "./animations.module.css";
 
 export const Step5: React.FC<{
   goNext: () => void;
@@ -26,7 +27,12 @@ Try to go into detail about what you like, what you do, and what you are looking
         }}
       />
       {userContext.userObject.description && (
-        <div onClick={props.goNext}> Tap to continue</div>
+        <div
+          onClick={props.goNext}
+          className={"text-neutral-400" + " " + styles.fadeIn}
+        >
+          (Tap to continue)
+        </div>
       )}
     </StepBase>
   );

@@ -18,7 +18,7 @@ export const DdTextArea: React.FC<InputHTMLAttributes<HTMLTextAreaElement>> = (
   props
 ) => {
   return (
-    <div>
+    <div className="w-full">
       <textarea
         {...props}
         className="w-full p-3 outline-blue-300 bg-neutral-200 rounded-lg "

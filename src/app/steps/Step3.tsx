@@ -13,7 +13,7 @@ I need to understand you!
 
 Let’s start with something easy.
       `}
-      duration={1000}
+      duration={1500}
     />
   );
 };

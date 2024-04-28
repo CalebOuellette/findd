@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { StepBase } from "./StepBase";
+import styles from "./animations.module.css";
 
 export const TextStepBase: React.FC<{
   goNext: () => void;
@@ -17,10 +18,21 @@ export const TextStepBase: React.FC<{
   return (
     <div onClick={() => nextStepReady && goNext()}>
       <StepBase>
-        <div className="whitespace-pre-wrap text-center text-xl text-neutral-700">
+        <div
+          className={
+            "whitespace-pre-wrap text-center text-xl text-neutral-700" +
+            " " +
+            styles.fadeIn
+          }
+        >
           {text}
         </div>
-        {nextStepReady && <div> Tap to continue</div>}
+        {nextStepReady && (
+          <div className={"text-neutral-400" + " " + styles.fadeIn}>
+            {" "}
+            (Tap to continue)
+          </div>
+        )}
       </StepBase>
     </div>
   );

@@ -12,7 +12,7 @@ export const Step1: React.FC<{
 Would you like to meet someone? 
 
 Someone just like you?`}
-      duration={1000}
+      duration={2000}
     />
   );
 };

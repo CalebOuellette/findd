@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useUser } from "@/contexts/UserContext";
 import { Chat } from "./Chat";
 import { StepBase } from "@/app/steps/StepBase";
+import style from "../steps/animations.module.css";
 
 export type User = {
   distance: number;
@@ -66,7 +67,12 @@ export const UserCard = ({
 }) => {
   return (
     <div
-      className="w-full flex justify-between items-center cursor-pointer bg-neutral-100 p-3 rounded-[11px]"
+      className={
+        "w-full flex justify-between items-center cursor-pointer bg-neutral-100 p-3 rounded-[11px]" +
+        " " +
+        style.fadeIn
+      }
+      style={{ animationDelay: Math.random() / 2 + "s" }}
       onClick={onClick}
     >
       <div>
