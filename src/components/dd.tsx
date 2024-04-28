@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./dd.module.css";
 
 export const DD = ({ tiny = false }: { tiny?: boolean }) => {
   return (
@@ -16,6 +17,7 @@ export const DD = ({ tiny = false }: { tiny?: boolean }) => {
           r="45"
           fill="#FF7B1B"
           fillOpacity="0.5"
+          className={styles.pulse}
           id="outer-circle"
         />
         <circle
@@ -24,12 +26,16 @@ export const DD = ({ tiny = false }: { tiny?: boolean }) => {
           r="38.9081"
           fill="#FF7B1B"
           fillOpacity="0.5"
+          style={{
+            animationDelay: ".1s",
+          }}
+          className={styles.pulse}
           id="middle-circle"
         />
         <circle
           cx="44.2138"
           cy="44.2138"
-          r="33.6025"
+          r="30.6025"
           fill="#FF7B1B"
           id="inner-circle"
         />
@@ -39,6 +45,7 @@ export const DD = ({ tiny = false }: { tiny?: boolean }) => {
           cy="35.371"
           r="5.30565"
           fill="white"
+          className={styles.move}
           fillOpacity="0.82"
         />
         <circle
@@ -47,6 +54,7 @@ export const DD = ({ tiny = false }: { tiny?: boolean }) => {
           cy="35.371"
           r="5.30565"
           fill="white"
+          className={styles.move}
           fillOpacity="0.82"
         />
       </svg>

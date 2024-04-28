@@ -1,0 +1,41 @@
+.pulse {
+  animation-duration: 0.5s;
+  animation-name: animate-pulse;
+  animation-fill-mode: backwards;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+}
+
+@keyframes animate-pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.98);
+  }
+}
+
+.move {
+  animation-duration: 7s;
+  animation-name: animate-move;
+  animation-fill-mode: backwards;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+}
+
+@keyframes animate-move {
+  0% {
+    transform: translateX(0px);
+  }
+  80% {
+    transform: translateX(1px);
+  }
+  90% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(5px);
+  }
+}
